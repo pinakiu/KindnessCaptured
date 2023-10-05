@@ -52,7 +52,7 @@ class EmployeeUser(AbstractBaseUser, PermissionsMixin):
         return self.user_name
     
     
-class UserProfile(models.Model):
+class DonaterUser(models.Model):
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=15) 
