@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'donations',
-    'users',
     'rest_framework',
     'corsheaders',
 ]
@@ -116,12 +116,17 @@ USE_I18N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = 'donations.DonatorUser'
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-    ]
-}
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.AllowAny',
+#     ]
+# }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Permissions:
 # AllowAny
@@ -132,8 +137,6 @@ REST_FRAMEWORK = {
 # CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:3000"
 # ]
-
-AUTH_USER_MODEL = "users.EmployeeUser"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

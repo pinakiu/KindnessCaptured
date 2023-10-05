@@ -1,14 +1,11 @@
-from rest_framework import generics
-from .models import Donation
-from .serializers import DonationSerializer
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets
+from .models import DonatorUser, Donation
+from .serializers import DonatorUserSerializer, DonationSerializer
 
-class DonationListCreateView(generics.ListCreateAPIView):
+class DonatorUserViewSet(viewsets.ModelViewSet):
+    queryset = DonatorUser.objects.all()
+    serializer_class = DonatorUserSerializer
+
+class DonationViewSet(viewsets.ModelViewSet):
     queryset = Donation.objects.all()
     serializer_class = DonationSerializer
-    permission_classes = [IsAuthenticated]
-
-class DonationRetrieveUpdateView(generics.RetrieveUpdateAPIView):
-    queryset = Donation.objects.all()
-    serializer_class = DonationSerializer
-    permission_classes = [IsAuthenticated]
